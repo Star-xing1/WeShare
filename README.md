@@ -1,6 +1,7 @@
 # :bulb:WeShare
 
 社交软件APP
+[后端源代码](https://github.com/Star-xing1/weshare_backend)
 
 :smiley:**前端项目**
 
