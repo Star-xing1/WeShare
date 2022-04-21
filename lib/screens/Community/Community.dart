@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:lab4/screens/Blog/components/poster_me.dart';
-import 'package:lab4/screens/Blog/components/poster_posts.dart';
-import 'package:lab4/screens/Community/Manager.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/screens/Blog/components/poster_me.dart';
+import 'package:weshare/screens/Blog/components/poster_posts.dart';
+import 'package:weshare/screens/Community/Manager.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:unicons/unicons.dart';
 import 'components/PersonCell.dart';
@@ -120,7 +120,7 @@ class CommunityState extends State<Community> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                Posterposts(email: personList[i]['email'])));
+                                Posterposts(email: personList[i]['email'],myemail: widget.email)));
                   }
                 },
                 color: Colors.white,

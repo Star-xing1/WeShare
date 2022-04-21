@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:lab4/constants.dart';
-import 'package:lab4/screens/Home/Home_screen.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/constants.dart';
+import 'package:weshare/screens/Home/Home_screen.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
@@ -45,7 +45,7 @@ class _CreatePostViewState extends State<CreatePostView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          '分享你的新鲜事',
+          '快来Get新想法',
           style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
         actions: [

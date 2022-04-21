@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:lab4/screens/Splash/splash_screen.dart';
-import 'package:lab4/utils/color.dart';
+import 'package:weshare/screens/Splash/splash_screen.dart';
+import 'package:weshare/utils/color.dart';
 import 'package:oktoast/oktoast.dart';
 import 'constants.dart';
 

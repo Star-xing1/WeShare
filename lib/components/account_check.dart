@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab4/utils/color.dart';
+import 'package:weshare/utils/color.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;

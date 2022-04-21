@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:oktoast/oktoast.dart';
 
 class PersonInfo extends StatefulWidget {

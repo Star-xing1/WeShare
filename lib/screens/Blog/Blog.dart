@@ -2,19 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:hive/hive.dart';
-import 'package:lab4/screens/Welcome/welcome_screen.dart';
-import 'package:lab4/utils/Date.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/screens/Welcome/welcome_screen.dart';
+import 'package:weshare/utils/Date.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:unicons/unicons.dart';
 import '../../constants.dart';
+import 'components/post_detail.dart';
 import 'components/poster_me.dart';
 import 'components/poster_posts.dart';
 
-// import 'components/ReadOnlyProfile.dart';
 
 class Blog extends StatefulWidget {
   Blog({Key? key, required this.email}) : super(key: key);
@@ -29,9 +29,13 @@ class Blog extends StatefulWidget {
 class BlogState extends State<Blog> {
   String email = '';
   String username = '';
+  String Like=' ';
+  int infoID=0;
   String _avaterURL = 'http://120.24.55.61:8080/images/defaultavatar.jpg';
   var postList = [];
   var infoList = [];
+  var giveLikeList=[];
+  var likeList=[];
   Color mainColor = const Color(0xff3C3261);
   EasyRefreshController easyRefreshController = new EasyRefreshController();
 
@@ -82,6 +86,7 @@ class BlogState extends State<Blog> {
           });
         }
         index++;
+
       }
     });
     super.initState();
@@ -101,8 +106,8 @@ class BlogState extends State<Blog> {
   @override
   Widget build(BuildContext context) {
     if (infoList == null) return CircularProgressIndicator();
-    print("开始");
-    print(postList);
+    // print("开始");
+    // print(postList);
     return new Scaffold(
       backgroundColor: Colors.white,
       endDrawer: new Drawer(
@@ -290,7 +295,7 @@ class BlogState extends State<Blog> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Posterposts(
-                                            email: infoList[index]['email'])));
+                                            email: infoList[index]['email'],myemail: widget.email,)));
                               }
                             },
                           ),
@@ -305,7 +310,7 @@ class BlogState extends State<Blog> {
                                 .copyWith(
                                     fontSize: 18, fontWeight: FontWeight.w600)),
                         subtitle: Text(
-                            RelativeDateFormat.format(
+                            infoList[index]['job']+"   "+RelativeDateFormat.format(
                                 DateTime.fromMillisecondsSinceEpoch(
                                         postList[index]['createdAt'])
                                     .toLocal()),
@@ -318,11 +323,19 @@ class BlogState extends State<Blog> {
                                     fontWeight: FontWeight.normal,
                                     color: Colors.grey)),
                         trailing: IconButton(
-                            onPressed: null,
+                            onPressed: ()
+                            {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PostDetail(
+                                          postID:postList[index]['postid'],email: widget.email)));
+                            },
                             icon: Icon(
                               Icons.more_horiz,
                               color: Theme.of(context).iconTheme.color,
-                            )),
+                            )
+                            ),
                       ),
                       postList[index]['description']!.isEmpty
                           ? const SizedBox.shrink()
@@ -342,27 +355,14 @@ class BlogState extends State<Blog> {
                         ),
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              IconButton(
-                                  onPressed: null,
-                                  icon: Icon(UniconsLine.thumbs_up,
-                                      color:
-                                          Theme.of(context).iconTheme.color)),
-                              IconButton(
-                                  onPressed: null,
-                                  icon: Icon(UniconsLine.comment_lines,
-                                      color: Theme.of(context).iconTheme.color))
-                            ],
-                          ),
-                          IconButton(
-                              onPressed: null,
-                              icon: Icon(
-                                UniconsLine.telegram_alt,
-                                color: Theme.of(context).iconTheme.color,
-                              ))
+                          Text(postList[index]["likes"].toString()+"人觉得很赞",
+                            style: TextStyle(
+                              color: kSecondaryThemeColor,
+                              fontFamily: 'Merienda',
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),)
                         ],
                       )
                     ],
@@ -390,9 +390,26 @@ class BlogState extends State<Blog> {
         _avaterURL = response.data["path"];
         email = response.data["email"];
         username = response.data["username"];
+        infoID=response.data["infoId"];
       });
     } else {
       showToast("服务器或网络错误！");
     }
   }
+
+  // Future<void> like(int infoID,int postID)
+  // async {
+  //   String likeUrl = baseURL + '/post/like?userId=' + infoID.toString()+"&"+"postId="+postID.toString();
+  //   Dio dio = new Dio();
+  //
+  //   var response = await dio.get(likeUrl);
+  //   if (response.statusCode == 200) {
+  //     setState(() {
+  //       giveLikeList[index]=1,
+  //     });
+  //     showToast("点赞成功！");
+  //   } else {
+  //     showToast("服务器或网络错误！");
+  //   }
+  // }
 }

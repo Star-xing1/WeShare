@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:lab4/screens/Home/Home_screen.dart';
+import 'package:weshare/screens/Home/Home_screen.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:lab4/constants.dart';
-import 'package:lab4/screens/Welcome/welcome_screen.dart';
+import 'package:weshare/constants.dart';
+import 'package:weshare/screens/Welcome/welcome_screen.dart';
 
 class EntranceAnimationScreen extends StatefulWidget {
   static const String id = "entrance_animation_screen";
@@ -40,7 +40,7 @@ class _EntranceAnimationScreenState extends State<EntranceAnimationScreen> {
       loaderColor: Colors.white,
       photoSize: 160,
       loadingText: Text(
-        'WeShare',
+        'WeShare\n寻找共鸣',
         style: TextStyle(
             color: kSecondaryThemeColor,
             fontFamily: 'Merienda',

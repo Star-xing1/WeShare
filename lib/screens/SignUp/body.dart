@@ -2,18 +2,18 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:lab4/constants.dart';
-import 'package:lab4/Screens/Login/login_screen.dart';
+import 'package:weshare/constants.dart';
+import 'package:weshare/Screens/Login/login_screen.dart';
 import 'package:unicons/unicons.dart';
 import './background.dart';
 import './or_divider.dart';
 import './social_icon.dart';
-import 'package:lab4/components/rounded_button.dart';
-import 'package:lab4/components/input_field.dart';
-import 'package:lab4/components/password_field.dart';
-import 'package:lab4/utils/Check.dart';
-import 'package:lab4/utils/URL.dart';
-import 'package:lab4/utils/color.dart';
+import 'package:weshare/components/rounded_button.dart';
+import 'package:weshare/components/input_field.dart';
+import 'package:weshare/components/password_field.dart';
+import 'package:weshare/utils/Check.dart';
+import 'package:weshare/utils/URL.dart';
+import 'package:weshare/utils/color.dart';
 import 'package:oktoast/oktoast.dart';
 
 //import '../../Home/Home.dart';

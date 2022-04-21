@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
-import 'package:lab4/screens/Blog/components/poster_me.dart';
-import 'package:lab4/screens/Blog/components/poster_posts.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/screens/Blog/components/poster_me.dart';
+import 'package:weshare/screens/Blog/components/poster_posts.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:unicons/unicons.dart';
 
@@ -152,7 +152,7 @@ class ManagerState extends State<Manager> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                Posterposts(email: personList[i]['email'])));
+                                Posterposts(email: personList[i]['email'],myemail: widget.email)));
                   }
                 },
                 color: Colors.white,

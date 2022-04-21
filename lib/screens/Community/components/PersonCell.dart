@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/utils/URL.dart';
 
 //个人信息的每一项
 class PersonCell extends StatelessWidget {

@@ -2,14 +2,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:lab4/screens/Profile/Profile.dart';
-import 'package:lab4/utils/Date.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/screens/Blog/components/post_detail.dart';
+import 'package:weshare/screens/Profile/Profile.dart';
+import 'package:weshare/utils/Date.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:unicons/unicons.dart';
+
+import '../../../constants.dart';
 
 class Posterme extends StatefulWidget {
   Posterme({Key? key, required this.email}) : super(key: key);
@@ -189,6 +192,16 @@ class _PostermeState extends State<Posterme> {
                             ListTile(
                               contentPadding: const EdgeInsets.all(0),
                               leading: CircleAvatar(
+                                child: new FlatButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => PostDetail(
+                                                postID:postList[index]['postid'],email: widget.email)));
+                                  },
+                                  child: new Text(''),
+                                ),
                                 radius: 30,
                                 backgroundImage: NetworkImage(_avaterURL),
                               ),
@@ -273,30 +286,14 @@ class _PostermeState extends State<Posterme> {
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: null,
-                                        icon: Icon(UniconsLine.thumbs_up,
-                                            color: Theme.of(context)
-                                                .iconTheme
-                                                .color)),
-                                    IconButton(
-                                        onPressed: null,
-                                        icon: Icon(UniconsLine.comment_lines,
-                                            color: Theme.of(context)
-                                                .iconTheme
-                                                .color))
-                                  ],
-                                ),
-                                IconButton(
-                                    onPressed: null,
-                                    icon: Icon(
-                                      UniconsLine.telegram_alt,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ))
+                                Text(postList[index]["likes"].toString()+"人觉得很赞",
+                                  style: TextStyle(
+                                    color: kSecondaryThemeColor,
+                                    fontFamily: 'Merienda',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),)
                               ],
                             )
                           ],

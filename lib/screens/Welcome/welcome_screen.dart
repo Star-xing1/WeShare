@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lab4/constants.dart';
-import 'package:lab4/screens/login/login_screen.dart';
-import 'package:lab4/screens/SignUp/signup_screen.dart';
+import 'package:weshare/constants.dart';
+import 'package:weshare/screens/login/login_screen.dart';
+import 'package:weshare/screens/SignUp/signup_screen.dart';
 import 'package:lottie/lottie.dart';
 import '../../../components/rounded_button.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';

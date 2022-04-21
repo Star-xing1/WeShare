@@ -2,16 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:lab4/screens/Blog/components/poster_detail.dart';
-import 'package:lab4/utils/Date.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/screens/Blog/components/post_detail.dart';
+import 'package:weshare/screens/Blog/components/poster_detail.dart';
+import 'package:weshare/utils/Date.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:unicons/unicons.dart';
 
-class Posterposts extends StatefulWidget {
-  Posterposts({Key? key, required this.email}) : super(key: key);
-  String email;
+import '../../../constants.dart';
 
+class Posterposts extends StatefulWidget {
+  Posterposts({Key? key, required this.email,required this.myemail}) : super(key: key);
+  String email;
+  String myemail;
   @override
   _PosterpostsState createState() => _PosterpostsState();
 }
@@ -205,7 +208,14 @@ class _PosterpostsState extends State<Posterposts> {
                                           fontWeight: FontWeight.normal,
                                           color: Colors.grey)),
                               trailing: IconButton(
-                                  onPressed: null,
+                                  onPressed: ()
+                                  {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => PostDetail(
+                                                postID:postList[index]['postid'],email: widget.myemail)));
+                                  },
                                   icon: Icon(
                                     Icons.more_horiz,
                                     color: Theme.of(context).iconTheme.color,
@@ -228,31 +238,42 @@ class _PosterpostsState extends State<Posterposts> {
                                 fit: BoxFit.cover,
                               ),
                             ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     Row(
+                            //       children: [
+                            //         IconButton(
+                            //             onPressed: null,
+                            //             icon: Icon(UniconsLine.thumbs_up,
+                            //                 color: Theme.of(context)
+                            //                     .iconTheme
+                            //                     .color)),
+                            //         IconButton(
+                            //             onPressed: null,
+                            //             icon: Icon(UniconsLine.comment_lines,
+                            //                 color: Theme.of(context)
+                            //                     .iconTheme
+                            //                     .color))
+                            //       ],
+                            //     ),
+                            //     IconButton(
+                            //         onPressed: null,
+                            //         icon: Icon(
+                            //           UniconsLine.telegram_alt,
+                            //           color: Theme.of(context).iconTheme.color,
+                            //         ))
+                            //   ],
+                            // ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: null,
-                                        icon: Icon(UniconsLine.thumbs_up,
-                                            color: Theme.of(context)
-                                                .iconTheme
-                                                .color)),
-                                    IconButton(
-                                        onPressed: null,
-                                        icon: Icon(UniconsLine.comment_lines,
-                                            color: Theme.of(context)
-                                                .iconTheme
-                                                .color))
-                                  ],
-                                ),
-                                IconButton(
-                                    onPressed: null,
-                                    icon: Icon(
-                                      UniconsLine.telegram_alt,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ))
+                                Text(postList[index]["likes"].toString()+"人觉得很赞",
+                                  style: TextStyle(
+                                    color: kSecondaryThemeColor,
+                                    fontFamily: 'Merienda',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),)
                               ],
                             )
                           ],

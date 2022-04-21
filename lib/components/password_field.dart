@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lab4/components/text_field_container.dart';
-import 'package:lab4/utils/color.dart';
+import 'package:weshare/components/text_field_container.dart';
+import 'package:weshare/utils/color.dart';
 import 'package:unicons/unicons.dart';
 
 class RoundedPasswordField extends StatelessWidget {

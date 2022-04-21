@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lab4/screens/Blog/Blog.dart';
-import 'package:lab4/screens/Blog/creat_post.dart';
-import 'package:lab4/screens/Community/Community.dart';
-import 'package:lab4/screens/Profile/myposts.dart';
+import 'package:weshare/screens/Blog/Blog.dart';
+import 'package:weshare/screens/Blog/creat_post.dart';
+import 'package:weshare/screens/Community/Community.dart';
+import 'package:weshare/screens/Profile/myposts.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:dio/dio.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:unicons/unicons.dart';
 
 class home extends StatefulWidget {
@@ -56,7 +56,7 @@ class homeState extends State<home> {
                   icon: Icon(UniconsLine.plus_square,
                       color: Colors.deepPurpleAccent),
                   child: Text(
-                    "发布",
+                    "发表",
                     style: TextStyle(
                         height: 0, fontSize: 10, color: Color(0xff886EE4)),
                   )),
@@ -80,7 +80,7 @@ class homeState extends State<home> {
         body: TabBarView(
           children: <Widget>[
             Blog(
-              email: widget.email,
+              email: widget.email
             ),
             CreatePostView(email: widget.email, info_id: info_id),
             Community(

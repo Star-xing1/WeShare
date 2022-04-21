@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
-import 'package:lab4/screens/Home/Home_screen.dart';
-import 'package:lab4/screens/Welcome/welcome_screen.dart';
-import 'package:lab4/utils/Check.dart';
-import 'package:lab4/utils/URL.dart';
+import 'package:weshare/screens/Home/Home_screen.dart';
+import 'package:weshare/screens/Welcome/welcome_screen.dart';
+import 'package:weshare/utils/Check.dart';
+import 'package:weshare/utils/URL.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
@@ -130,7 +130,7 @@ class MyProfileState extends State<MyProfile> {
               onTap: () {
                 Dialogs.materialDialog(
                     color: Colors.white,
-                    msg: '技术栈：Flutter+SpringBoot+MySQL\n\n（排名不分先后，按字母表排序）\n\n制作人：陈文洋、刘付星、唐纪斌\n\n'
+                    msg: '技术栈：Flutter+SpringBoot+MySQL\n\n制作人：刘付星、唐纪斌、陈文康、陈文洋\n\n'
                         '特别鸣谢：abuanwar072 (GitHub)\n                  '
                         'bimsina (GitHub)\n                  Ghana Tech Lab (GitHub)\n                  NSVEGUR (GitHub)',
                     title: '关于项目',
