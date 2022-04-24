@@ -50,8 +50,6 @@ TIPS：增删查改工作均已完成
 
 键入 `flutter run --no-sound-null-safety`进入调试状态，将安装APP至连接的真机或模拟机中，键入 `flutter build apk --no-sound-null-safety` 打包APP生成APK，然后在build目录找到app-release.apk，此即为所需的发行版本。
 
-> IOS版本敬请期待	~~其实是IOS有点麻烦~~
-
 
 
 ## 项目展示
