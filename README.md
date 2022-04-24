@@ -1,6 +1,6 @@
-# :bulb:WeShare
+# :bulb:跨多平台的知识社区软件WeShare
 
-社交软件APP
+跨多平台的知识社区软件WeShare
 [后端源代码](https://github.com/Star-xing1/weshare_backend)
 
 :smiley:**前端项目**
@@ -13,110 +13,58 @@
 
 使用Flutter(flutter SDK>=2.12.0 <3.0.0)框架开发(依赖包详见源码配置文件pubspec.yaml)
 
+后端：SpringBoot、Redis、MySQL
+
+
+
 ## :lollipop:Features
 
 1. **登录/注册**
 
-基于后端Java Mail使用邮箱注册
+基于后端Java Mail使用邮箱注册，并加密存储用户密码
 
- 	2. **自动登录**
+2. **自动登录**
 
-基于hive数据库保持登录状态
+基于Hive数据库保持登录状态
 
 3. **个人资料**
 
-DIY个人信息、头像
+DIY个人信息、头像等
 
-4. **动态发布**
+4. **动态发布、点赞、评论、状态更新**
 
-随时随地发布动态，分享自己的故事
+随时随地发布动态，分享自己的知识、寻求帮助；点赞、评论他人推文寻求灵感的碰撞；为推文更新状态（已解决/未解决）帮助寻找有效信息
+
+TIPS：增删查改工作均已完成
 
 5. **社区**
 
 根据需求精确/模糊搜索用户，查看TA的信息
 
+
+
 ## 安装使用
 
-1. **使用本仓库提供的APK直接安装**
+1. **使用本仓库Releases提供的APK直接安装**
 2. **配置Flutter开发环境，确认flutter SDK版本>=2.12.0 <3.0.0**
 
 键入 `flutter run --no-sound-null-safety`进入调试状态，将安装APP至连接的真机或模拟机中，键入 `flutter build apk --no-sound-null-safety` 打包APP生成APK，然后在build目录找到app-release.apk，此即为所需的发行版本。
 
 > IOS版本敬请期待	~~其实是IOS有点麻烦~~
 
+
+
 ## 项目展示
 
-[WeShare 应用展示_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1GP4y1E7Ge?p=1&share_medium=android&share_plat=android&share_session_id=e38efb1a-e5d3-490c-97ed-d823aa6ba3b0&share_source=QQ&share_tag=s_i&timestamp=1641435625&unique_k=sCykvFY)
+见仓库中演示MP4
 
-## 项目结构
 
-```
-├─lib
-│  │  constants.dart
-│  │  main.dart
-│  │
-│  ├─components
-│  │      account_check.dart
-│  │      input_field.dart
-│  │      password_field.dart
-│  │      rounded_button.dart
-│  │      text_field_container.dart
-│  │
-│  ├─screens
-│  │  ├─Blog
-│  │  │  │  Blog.dart
-│  │  │  │  creat_post.dart
-│  │  │  │  utils.dart
-│  │  │  │
-│  │  │  └─components
-│  │  │          poster_detail.dart
-│  │  │          poster_me.dart
-│  │  │          poster_posts.dart
-│  │  │
-│  │  ├─Community
-│  │  │  │  Community.dart
-│  │  │  │  Manager.dart
-│  │  │  │
-│  │  │  └─components
-│  │  │          PersonCell.dart
-│  │  │          PersonInfo.dart
-│  │  │          SearchBar.dart
-│  │  │
-│  │  ├─Home
-│  │  │      Home_screen.dart
-│  │  │
-│  │  ├─Login
-│  │  │      login_screen.dart
-│  │  │
-│  │  ├─Profile
-│  │  │      myposts.dart
-│  │  │      Profile.dart
-│  │  │
-│  │  ├─SignUp
-│  │  │      background.dart
-│  │  │      body.dart
-│  │  │      or_divider.dart
-│  │  │      signup_screen.dart
-│  │  │      social_icon.dart
-│  │  │
-│  │  ├─Splash
-│  │  │      splash_screen.dart
-│  │  │
-│  │  ├─VideoCall
-│  │  │      VideoCall.dart
-│  │  │      VideoPage.dart
-│  │  │
-│  │  └─Welcome
-│  │          welcome_screen.dart
-│  │
-│  └─utils
-│          Check.dart
-│          Color.dart
-│          Date.dart
-│          URL.dart
-```
 
-总共 9 个主要的页面，依次是 Splash（加载页面）-> Welcome（欢迎界面）-> SignUp（注册界面）Login（登录界面）-> Blog（推文界面）create_post（发布界面）Community（社区界面）VideoCall（视频通话界面）Profile（个人资料界面）
+## 项目后续
+
+项目持续开发中，本项目后续将会基于用户与推文的特点，引入基于NeuralCF的深度学习推荐模型为每位用户推荐最感兴趣的推文，同时将基于Kafka消息队列引入消息通知，使用分布式设计进一步优化并发量与响应速度等等。
+
+
 
 ## :cake:特别鸣谢
 
