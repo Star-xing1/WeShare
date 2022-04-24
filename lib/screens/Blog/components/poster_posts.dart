@@ -214,7 +214,7 @@ class _PosterpostsState extends State<Posterposts> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => PostDetail(
-                                                postID:postList[index]['postid'],email: widget.myemail)));
+                                                postID:postList[index]['postid'],email: widget.myemail,username:username,path:_avaterURL)));
                                   },
                                   icon: Icon(
                                     Icons.more_horiz,
@@ -266,16 +266,24 @@ class _PosterpostsState extends State<Posterposts> {
                             //   ],
                             // ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(postList[index]["likes"].toString()+"人觉得很赞",
+                                Text(postList[index]["likes"].toString()+"人觉得很赞"+"-"+postList[index]["commentCount"].toString()+"条评论",
                                   style: TextStyle(
                                     color: kSecondaryThemeColor,
                                     fontFamily: 'Merienda',
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
-                                  ),)
+                                  ),),
+                                Text(postList[index]["isSolved"]==0?"未解决":"已解决",
+                                  style: TextStyle(
+                                    color: postList[index]["isSolved"]==0?Colors.grey:Colors.green,
+                                    fontFamily: 'Merienda',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),

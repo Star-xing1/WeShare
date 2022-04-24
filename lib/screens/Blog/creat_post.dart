@@ -230,7 +230,7 @@ class _CreatePostViewState extends State<CreatePostView> {
       'infoId': info_id
     });
     if (response.statusCode == 200) {
-      showToast(response.data.toString(),
+      showToast("发表成功!",
           position: ToastPosition.center, backgroundColor: Colors.grey);
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => home(email: widget.email)));

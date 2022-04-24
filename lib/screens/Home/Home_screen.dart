@@ -80,7 +80,7 @@ class homeState extends State<home> {
         body: TabBarView(
           children: <Widget>[
             Blog(
-              email: widget.email
+              email: widget.email,username:username,path:_avaterURL
             ),
             CreatePostView(email: widget.email, info_id: info_id),
             Community(

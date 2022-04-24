@@ -17,9 +17,10 @@ import 'components/poster_posts.dart';
 
 
 class Blog extends StatefulWidget {
-  Blog({Key? key, required this.email}) : super(key: key);
+  Blog({Key? key, required this.email,required this.username,required this.path}) : super(key: key);
   String email;
-
+  String path;
+  String username;
   @override
   BlogState createState() {
     return new BlogState();
@@ -139,7 +140,7 @@ class BlogState extends State<Blog> {
             onTap: () {
               Dialogs.materialDialog(
                   color: Colors.white,
-                  msg: '技术栈：Flutter+SpringBoot+MySQL\n\n（排名不分先后，按字母表排序）\n\n制作人：陈文洋、刘付星、唐纪斌\n\n'
+                  msg: '技术栈：Flutter+SpringBoot+MySQL\n\n制作人：刘付星、唐纪斌、陈文康、陈文洋\n\n项目地址（欢迎Star）:https://github.com/Star-xing1/WeShare\n\n'
                       '特别鸣谢：abuanwar072 (GitHub)\n                  '
                       'bimsina (GitHub)\n                  Ghana Tech Lab (GitHub)\n                  NSVEGUR (GitHub)',
                   title: '关于项目',
@@ -160,6 +161,14 @@ class BlogState extends State<Blog> {
                       iconColor: Colors.white,
                     ),
                   ]);
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text('问题反馈',
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+            trailing: Icon(UniconsLine.github, color: mainColor),
+            onTap: () {
             },
           ),
           Divider(),
@@ -329,7 +338,7 @@ class BlogState extends State<Blog> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => PostDetail(
-                                          postID:postList[index]['postid'],email: widget.email)));
+                                          postID:postList[index]['postid'],email: widget.email,username:widget.username,path:widget.path)));
                             },
                             icon: Icon(
                               Icons.more_horiz,
@@ -355,16 +364,24 @@ class BlogState extends State<Blog> {
                         ),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(postList[index]["likes"].toString()+"人觉得很赞",
+                          Text(postList[index]["likes"].toString()+"人觉得很赞"+"-"+postList[index]["commentCount"].toString()+"条评论",
                             style: TextStyle(
                               color: kSecondaryThemeColor,
                               fontFamily: 'Merienda',
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
-                            ),)
+                            ),),
+                          Text(postList[index]["isSolved"]==0?"未解决":"已解决",
+                            style: TextStyle(
+                              color: postList[index]["isSolved"]==0?Colors.grey:Colors.green,
+                              fontFamily: 'Merienda',
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

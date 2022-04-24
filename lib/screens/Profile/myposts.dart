@@ -186,7 +186,7 @@ class _MypostsState extends State<Myposts> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PostDetail(
-                                            postID:postList[index]['postid'],email: widget.email)));
+                                            postID:postList[index]['postid'],email: widget.email,username:username,path:_avaterURL)));
                               },
                               child: new Text(''),
                             ),
@@ -273,14 +273,104 @@ class _MypostsState extends State<Myposts> {
                           ),
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(postList[index]["likes"].toString()+"人觉得很赞",
+                            Text(postList[index]["likes"].toString()+"人觉得很赞"+"-"+postList[index]["commentCount"].toString()+"条评论",
                               style: TextStyle(
                                 color: kSecondaryThemeColor,
                                 fontFamily: 'Merienda',
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
-                              ),)
+                              ),),
+                            Text(postList[index]["isSolved"]==0?"未解决":"已解决",
+                              style: TextStyle(
+                                color: postList[index]["isSolved"]==0?Colors.grey:Colors.green,
+                                fontFamily: 'Merienda',
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),),
+                            postList[index]["isSolved"]==0?IconButton(
+                                onPressed: ()
+                                {
+                                  Dialogs.materialDialog(
+                                      msg: '你确定吗将当前状态变为已解决么？',
+                                      title: "改变推文状态",
+                                      color: Colors.white,
+                                      context: context,
+                                      actions: [
+                                        IconsButton(
+                                          onPressed: () {
+                                            int temp=1;
+                                            solve(postList[index]["postid"],temp);
+                                            Navigator.pop(context);
+                                            setState(() {
+                                              getData();
+                                            });
+                                          },
+                                          text: '确定',
+                                          iconData: UniconsLine.check,
+                                          color: Colors.green,
+                                          textStyle:
+                                          TextStyle(color: Colors.white),
+                                          iconColor: Colors.white,
+                                        ),
+                                        IconsOutlineButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          text: '取消',
+                                          iconData: UniconsLine.cancel,
+                                          textStyle:
+                                          TextStyle(color: Colors.grey),
+                                          iconColor: Colors.grey,
+                                        )
+                                      ]);
+                                },
+                                icon: Icon(
+                                  Icons.check,
+                                  color: Colors.green,
+                                )):
+                            IconButton(
+                                onPressed: ()
+                                {
+                                  Dialogs.materialDialog(
+                                      msg: '你确定吗将当前状态变为未解决么？',
+                                      title: "改变推文状态",
+                                      color: Colors.white,
+                                      context: context,
+                                      actions: [
+                                        IconsButton(
+                                          onPressed: () {
+                                            int temp=0;
+                                            solve(postList[index]["postid"],temp);
+                                            Navigator.pop(context);
+                                            setState(() {
+                                              getData();
+                                            });
+                                          },
+                                          text: '确定',
+                                          iconData: UniconsLine.check,
+                                          color: Colors.green,
+                                          textStyle:
+                                          TextStyle(color: Colors.white),
+                                          iconColor: Colors.white,
+                                        ),
+                                        IconsOutlineButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          text: '取消',
+                                          iconData: UniconsLine.cancel,
+                                          textStyle:
+                                          TextStyle(color: Colors.grey),
+                                          iconColor: Colors.grey,
+                                        ),
+                                      ]);
+                                },
+                                icon: Icon(
+                                  Icons.check,
+                                  color: Colors.grey,
+                                ))
                           ],
                         )
                       ],
@@ -366,6 +456,20 @@ class _MypostsState extends State<Myposts> {
     if (response.statusCode == 200) {
       print("删除成功");
       showToast("删除成功！",
+          position: ToastPosition.center, backgroundColor: Colors.grey);
+    } else {
+      showToast("服务器或网络错误！");
+    }
+  }
+
+  Future<void> solve(int postid,int solve)
+  async {
+    String solveUrl =
+        baseURL + '/post/update/isSolved?postId=' + postid.toString()+"&isSolved="+solve.toString();
+    Dio dio = new Dio();
+    var response = await dio.put(solveUrl);
+    if (response.statusCode == 200) {
+      showToast("修改状态成功!",
           position: ToastPosition.center, backgroundColor: Colors.grey);
     } else {
       showToast("服务器或网络错误！");
