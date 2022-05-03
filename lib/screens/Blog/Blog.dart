@@ -14,6 +14,7 @@ import '../../constants.dart';
 import 'components/post_detail.dart';
 import 'components/poster_me.dart';
 import 'components/poster_posts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class Blog extends StatefulWidget {
@@ -140,7 +141,7 @@ class BlogState extends State<Blog> {
             onTap: () {
               Dialogs.materialDialog(
                   color: Colors.white,
-                  msg: '技术栈：Flutter+SpringBoot+MySQL\n\n制作人：刘付星、唐纪斌、陈文康、陈文洋\n\n项目地址（欢迎Star）:https://github.com/Star-xing1/WeShare\n\n'
+                  msg: '技术栈：Flutter+SpringBoot+MySQL+Redis+Hive\n\n制作人：刘付星、唐纪斌、陈文康、陈文洋\n\n项目地址（欢迎Star）:https://github.com/Star-xing1/WeShare\n\n'
                       '特别鸣谢：abuanwar072 (GitHub)\n                  '
                       'bimsina (GitHub)\n                  Ghana Tech Lab (GitHub)\n                  NSVEGUR (GitHub)',
                   title: '关于项目',
@@ -167,8 +168,35 @@ class BlogState extends State<Blog> {
           ListTile(
             title: Text('问题反馈',
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
-            trailing: Icon(UniconsLine.github, color: mainColor),
+            trailing: Icon(Icons.email),
             onTap: () {
+              Dialogs.materialDialog(
+                  msg: '即将跳转网页，是否继续？',
+                  title: "问题反馈",
+                  color: Colors.white,
+                  context: context,
+                  actions: [
+                    IconsOutlineButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      text: '取消',
+                      iconData: UniconsLine.cancel,
+                      textStyle: TextStyle(color: Colors.grey),
+                      iconColor: Colors.grey,
+                    ),
+                    IconsButton(
+                      onPressed: () {
+                        _launchUrl();
+                        Navigator.pop(context);
+                      },
+                      text: '继续',
+                      iconData: UniconsLine.sign_out_alt,
+                      color: Colors.green,
+                      textStyle: TextStyle(color: Colors.white),
+                      iconColor: Colors.white,
+                    ),
+                  ]);
             },
           ),
           Divider(),
@@ -414,19 +442,11 @@ class BlogState extends State<Blog> {
     }
   }
 
-  // Future<void> like(int infoID,int postID)
-  // async {
-  //   String likeUrl = baseURL + '/post/like?userId=' + infoID.toString()+"&"+"postId="+postID.toString();
-  //   Dio dio = new Dio();
-  //
-  //   var response = await dio.get(likeUrl);
-  //   if (response.statusCode == 200) {
-  //     setState(() {
-  //       giveLikeList[index]=1,
-  //     });
-  //     showToast("点赞成功！");
-  //   } else {
-  //     showToast("服务器或网络错误！");
-  //   }
-  // }
+  void _launchUrl() async {
+    final Uri _url = Uri(scheme: 'sms', path: 'hnuweshare@163.com');
+    if (!await launchUrl(_url))
+    {
+      showToast("服务器或网络错误！");throw 'Could not launch $_url';
+    }
+  }
 }

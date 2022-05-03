@@ -4,7 +4,7 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   SearchBar({
     Key? key,
     required this.leading,
-    this.hintText: '请输入用户名',
+    this.hintText: '搜索你感兴趣的用户',
     required this.onChanged,
     required this.onSearch,
   }) : super(key: key);
@@ -88,7 +88,7 @@ class _SearchBarState extends State<SearchBar> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   isDense: true,
-                  hintText: widget.hintText ?? '请输入关键字',
+                  hintText: widget.hintText,
                   hintStyle: TextStyle(
                     fontSize: 15,
                     color: Color(0xFF999999),

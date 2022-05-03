@@ -3,7 +3,7 @@ import 'package:weshare/constants.dart';
 import 'package:weshare/screens/login/login_screen.dart';
 import 'package:weshare/screens/SignUp/signup_screen.dart';
 import 'package:lottie/lottie.dart';
-import '../../../components/rounded_button.dart';
+import 'package:weshare/components/rounded_button.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:blobs/blobs.dart';
 import 'package:oktoast/oktoast.dart';
