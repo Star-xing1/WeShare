@@ -638,21 +638,20 @@ class _PostDetailState extends State<PostDetail> {
 
   Future<void> commentC(int index)
   async {
+    var temp1={"username":widget.username,"path":widget.path};
+    var temp2={"username":commentinfoList_from[index]['username']};
     String commentUrl = baseURL + '/comment/save';
     Dio dio = new Dio();
     var response = await dio.post<String>(commentUrl,data: {"belongUserId": infoID, "postId": postList[0]["postid"],"userId":commentList[index]["belongUserId"],"content":CommentController.text});
     if (response.statusCode == 200) {
       DateTime dateTime= DateTime.now();
       String time=dateTime.toString().substring(0,19);
-
       setState(() {
-        var temp={"belongUserId": infoID, "postId": postList[0]["postid"],"userId":commentList[index]["belongUserId"],"content":CommentController.text,"createTime":time};
-        commentList.insert(0,temp);
-        temp={"username":widget.username,"path":widget.path};
-        commentinfoList_from.insert(0,temp);
-        temp={"username":commentinfoList_from[index]['username']};
-        commentinfoList_to.insert(0,temp);
+        commentinfoList_from.insert(0,temp1);
+        commentinfoList_to.insert(0,temp2);
         postList[0]["commentCount"]++;
+        var temp3={"belongUserId": infoID, "postId": postList[0]["postid"],"userId":commentList[index]["belongUserId"],"content":CommentController.text,"createTime":time};
+        commentList.insert(0,temp3);
       });
       Navigator.of(context).pop();
       showToast("发表评论成功！");
