@@ -441,12 +441,18 @@ class BlogState extends State<Blog> {
       showToast("服务器或网络错误！");
     }
   }
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
 
   void _launchUrl() async {
-    final Uri _url = Uri(scheme: 'sms', path: 'hnuweshare@163.com');
+    final Uri _url =Uri.parse('mailto:hnuweshare@163.com?subject=问题反馈&body=请输入您的问题');
     if (!await launchUrl(_url))
     {
-      showToast("服务器或网络错误！");throw 'Could not launch $_url';
+      showToast("打开应用失败！");throw 'Could not launch $_url';
     }
   }
+
 }
